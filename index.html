@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Folha de Assinaturas</title>
+  <link rel="stylesheet" href="vars.css">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="container">
+    <h1>Folha de Assinaturas de Encomendas</h1>
+
+    <label for="torre">Selecione a torre:</label>
+    <select id="torre">
+      <option value="TORRE A">TORRE A</option>
+      <option value="TORRE B">TORRE B</option>
+      <option value="TORRE C">TORRE C</option>
+      <option value="TORRE D">TORRE D</option>
+      <option value="TORRE E" selected>TORRE E</option>
+    </select>
+
+    <label for="entrada">Cole os dados brutos abaixo:</label>
+    <textarea id="entrada" rows="10" placeholder="Cole aqui os dados copiados do sistema"></textarea>
+
+    <button onclick="gerarTabela()">Gerar para Impressão</button>
+
+    <script src="main.js"></script>
+  </div>
+</body>
+</html>
