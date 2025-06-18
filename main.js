@@ -15,7 +15,7 @@ function gerarTabela() {
     const morador = colunas[6].trim();
 
     if (torreSelecionada === 'TORRE A' || torreSelecionada === 'TORRE B') {
-      aptoTorreOriginal = aptoTorreOriginal.replace('SALA', '').trim();
+      aptoTorreOriginal = aptoTorreOriginal.replace('SALA - ', '').trim();
     }
 
     if (aptoTorreOriginal.includes(torreSelecionada)) {
