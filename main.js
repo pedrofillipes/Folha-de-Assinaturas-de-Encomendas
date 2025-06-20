@@ -1,5 +1,7 @@
 function gerarTabela() {
   const torreSelecionada = document.getElementById('torre').value.trim();
+  const isAdministracao = torreSelecionada === 'ADMINISTRACAO';
+
   const dados = document.getElementById('entrada').value.trim().split('\n');
   const registros = [];
   const jaAdicionados = new Set();
@@ -10,22 +12,41 @@ function gerarTabela() {
 
     const data = colunas[0].trim();
     const rastreio = colunas[3].trim();
-    let aptoTorreOriginal = colunas[4].replace('APTO - ', '').trim().toUpperCase();
+    let unidadeBruta = colunas[4].replace('APTO - ', '').trim().toUpperCase();
     const remetente = colunas[5].trim();
     const morador = colunas[6].trim();
 
-    if (torreSelecionada === 'TORRE A' || torreSelecionada === 'TORRE B') {
-      aptoTorreOriginal = aptoTorreOriginal.replace('SALA - ', '').trim();
+    // Ex: "101 - TORRE A" => unidade = "101", torre = "TORRE A"
+    let unidade = unidadeBruta;
+    let torre = '';
+
+    if (unidadeBruta.includes(' - ')) {
+      const partes = unidadeBruta.split(' - ');
+      unidade = partes[0].trim();
+      torre = partes[1].trim();
+    } else {
+      // Caso especial: ADMINISTRACAO
+      torre = unidadeBruta;
     }
 
-    if (aptoTorreOriginal.includes(torreSelecionada)) {
-      const chave = `${data}|${aptoTorreOriginal}|${morador}|${rastreio}`;
+    // Limpa "SALA" para A e B
+    if (torreSelecionada === 'TORRE A' || torreSelecionada === 'TORRE B') {
+      unidade = unidade.replace('SALA', '').trim();
+    }
+
+    const corresponde =
+      (isAdministracao && torre === 'ADMINISTRACAO') ||
+      (!isAdministracao && torre === torreSelecionada);
+
+    if (corresponde) {
+      const chave = `${data}|${unidade}|${morador}|${rastreio}`;
       if (!jaAdicionados.has(chave)) {
         jaAdicionados.add(chave);
 
-        const numeroApto = parseInt(aptoTorreOriginal.split(' - ')[0]) || 0;
-        const numeroUnidadeLimpo = aptoTorreOriginal.replace(` - ${torreSelecionada}`, '').trim();
-        registros.push({ data, unidade: numeroUnidadeLimpo, morador, rastreio, remetente, numeroApto });
+        const numeroApto = parseInt(unidade) || 0;
+        const unidadeFinal = isAdministracao ? 'ADM' : unidade;
+
+        registros.push({ data, unidade: unidadeFinal, morador, rastreio, remetente, numeroApto });
       }
     }
   });
@@ -33,12 +54,13 @@ function gerarTabela() {
   registros.sort((a, b) => a.numeroApto - b.numeroApto);
 
   const novaJanela = window.open('', '_blank');
-  const torreAB = torreSelecionada === 'TORRE A' || torreSelecionada === 'TORRE B';
+
+  const isTorreAB = torreSelecionada === 'TORRE A' || torreSelecionada === 'TORRE B';
 
   const conteudo = `
     <html>
     <head>
-      <title>Folha de Assinaturas - ${torreSelecionada}</title>
+      <title>Folha de Assinaturas - ${isAdministracao ? 'ADMINISTRAÇÃO' : torreSelecionada}</title>
       <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
       <style>
         body {
@@ -57,12 +79,11 @@ function gerarTabela() {
           text-align: center;
           vertical-align: top;
           overflow-wrap: break-word;
-          word-wrap: break-word;
         }
         th:nth-child(1), td:nth-child(1) { width: 10%; }
         th:nth-child(2), td:nth-child(2) { width: 16%; }
         th:nth-child(3), td:nth-child(3) { width: 7%; font-weight: bold; }
-        th:nth-child(4), td:nth-child(4) { width: 12%; }
+        th:nth-child(4), td:nth-child(4) { width: 20%; }
         th:nth-child(5), td:nth-child(5) { width: 20%; font-weight: bold; }
         th:nth-child(6), td:nth-child(6) {
           width: 28%;
@@ -80,13 +101,13 @@ function gerarTabela() {
       </style>
     </head>
     <body>
-      <h1>Folha de Assinaturas - ${torreSelecionada}</h1>
+      <h1>Folha de Assinaturas - ${isAdministracao ? 'ADMINISTRAÇÃO' : torreSelecionada}</h1>
       <table>
         <thead>
           <tr>
             <th>Data</th>
             <th>Código</th>
-            <th>Unid</th>
+            <th>Unidade</th>
             <th>Remetente</th>
             <th>Destinatário</th>
             <th>Retirada</th>
@@ -103,11 +124,11 @@ function gerarTabela() {
               <td>
                 <div style="display: flex; gap: 10px;">
                   <span style="flex: 2;">Nome:</span>
-                  ${!torreAB ? '<span style="flex: 1;">Data:</span>' : ''}
+                  ${!isTorreAB && !isAdministracao ? '<span style="flex: 1;">Data:</span>' : ''}
                 </div>
                 <div style="display: flex; gap: 10px;">
                   <span style="flex: 2;">Doc:</span>
-                  ${!torreAB ? '<span style="flex: 1;">Hora:</span>' : ''}
+                  ${!isTorreAB && !isAdministracao ? '<span style="flex: 1;">Hora:</span>' : ''}
                 </div>
               </td>
             </tr>
