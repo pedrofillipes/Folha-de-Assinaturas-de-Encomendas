@@ -43,8 +43,8 @@ Sistema simples para geração e impressão de folha de assinaturas para control
 
 ## ✍️ Autor
 
-[Seu Nome ou Nome da Empresa]  
-[Link do GitHub] – [Email]
+Pedro Oliveira  
+https://github.com/pedrofillipes
 
 ---
 
