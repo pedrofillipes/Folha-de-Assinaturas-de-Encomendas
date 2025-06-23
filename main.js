@@ -13,8 +13,9 @@ function gerarTabela() {
     const data = colunas[0].trim();
     const rastreio = colunas[3].trim();
     let unidadeBruta = colunas[4]
-      .replace('APTO - ', '')
-      .replace(/SALA/gi, '')  // remove qualquer ocorrência de SALA (independente da posição)
+      .replace('APTO', '')
+      .replace(/SALA/gi, '') // remove qualquer ocorrência de SALA (independente da posição)
+      .replace(' - ', '')
       .trim()
       .toUpperCase();
 
