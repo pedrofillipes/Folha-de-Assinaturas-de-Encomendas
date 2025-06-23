@@ -18,12 +18,13 @@ Sistema simples para geração e impressão de folha de assinaturas para control
 
 ## 🧠 Regras aplicadas
 
-- Torres A e B: remove "SALA" das unidades
+- Torres A e B: remove todas as ocorrências de "SALA" da unidade (não importa a posição)
 - Torres A e B: oculta campos "Data:" e "Hora:" na célula "Retirada"
 - ADMINISTRAÇÃO:
   - Reconhece unidades com valor `"administracao"` (sem acento e minúsculo)
   - Substitui na tabela o nome da unidade por `"ADM"`
   - Também oculta "Data:" e "Hora:" na célula "Retirada"
+- Os campos da unidade são automaticamente convertidos para maiúsculas
 - Células de tabela não quebram na impressão (`break-inside: avoid`)
 - Colunas com largura fixa e negrito nas colunas 3 (Unidade) e 5 (Destinatário)
 
@@ -49,7 +50,3 @@ Sistema simples para geração e impressão de folha de assinaturas para control
 
 Pedro Oliveira  
 https://github.com/pedrofillipes
-
----
-
-Sinta-se à vontade para clonar, adaptar ou contribuir com melhorias!
