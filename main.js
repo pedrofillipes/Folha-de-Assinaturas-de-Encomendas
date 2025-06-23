@@ -83,9 +83,9 @@ function gerarTabela() {
         th:nth-child(1), td:nth-child(1) { width: 10%; }
         th:nth-child(2), td:nth-child(2) { width: 16%; }
         th:nth-child(3), td:nth-child(3) { width: 7%; font-weight: bold; }
-        th:nth-child(4), td:nth-child(4) { width: 20%; }
+        th:nth-child(4), td:nth-child(4) { width: 15%; }
         th:nth-child(5), td:nth-child(5) { width: 20%; font-weight: bold; }
-        th:nth-child(6), td:nth-child(6) { width: 28%; text-align: left; }
+        th:nth-child(6), td:nth-child(6) { width: 32%; text-align: left; }
         @media print {
           .no-print { display: none; }
           tbody { break-inside: avoid; page-break-inside: avoid; }
@@ -99,7 +99,7 @@ function gerarTabela() {
           <tr>
             <th>Data</th>
             <th>Código</th>
-            <th>Unidade</th>
+            <th>Unid</th>
             <th>Remetente</th>
             <th>Destinatário</th>
             <th>Retirada</th>
