@@ -1,10 +1,11 @@
 :root {
-    /* Fontes */
-    --font: 'Montserrat', sans-serif;
+  /* Fontes */
+  --font: "Inter", sans-serif;
+  --font-2: "Quicksand", sans-serif;
 
-    /* Cores */
-    --cor-1: #EFE4D2;
-    --cor-2: #03A6A1;
-    --cor-3: #B13BFF;
-    --cor-4: #a7a7a7;
+  /* Cores */
+  --cor-1: #EDEDED;  /* fundo geral */
+  --cor-2: #81E7AF;  /* elementos (botões, textarea) */
+  --cor-3: #00C8D7;
+  --cor-4: #6DE1D2;
 }

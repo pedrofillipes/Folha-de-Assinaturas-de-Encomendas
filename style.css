@@ -1,34 +1,73 @@
 body {
   font-family: var(--font);
-  padding: 20px;
-  background: var(--cor-2);
+  background: var(--cor-1);
+  margin: 0;
+  padding: 40px;
 }
 
 #container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  align-items: center; /* Alinha verticalmente com a textarea */
+  gap: 40px; /* Distância horizontal menor entre blocos */
+  max-width: 1200px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: 60px; /* Espaço maior entre o título e a caixa */
+}
+
+option {
+  text-align: left;
+}
+
+textarea {
+  width: 600px;
+  height: 300px;
+  background: var(--cor-2);
+  border: 3px solid black;
+  resize: none;
+  padding: 10px;
+  font-size: 14px;
+  color: black;
+}
+
+.left-side {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
 }
 
-textarea, select, button {
-  margin-top: 10px;
-  display: block;
-  width: 100%;
-  max-width: 600px;
+.controls {
+  margin-top: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-self: center; /* Garante que o grupo de botões fique centralizado */
 }
 
-td {
-  white-space: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
+select {
+  background: var(--cor-2);
+  border: 1px solid black;
+  border-radius: 40px;
+  padding: 15px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 250px;
+  text-align: center;
+  font-family: var(--font-2);
 }
 
-@media print {
-  .no-print {
-    display: none;
-  }
+button {
+  font-style: italic;
+  background: var(--cor-2);
+  border: 1px solid black;
+  border-radius: 40px;
+  padding: 15px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 250px;
+  text-align: center;
+  font-family: var(--font-2);
 }
